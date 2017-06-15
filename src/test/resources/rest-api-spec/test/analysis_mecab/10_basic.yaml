@@ -1,0 +1,84 @@
+# Integration tests for Kuromoji analysis components
+#
+---
+"Analyzer":
+    - skip:
+        features: warnings
+    - do:
+        warnings:
+          - text request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - analyzer request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+        indices.analyze:
+          text:         JR新宿駅の近くにビールを飲みに行こうか
+          analyzer:     mecab
+    - length: { tokens: 8 }
+    - match:  { tokens.0.token: jr }
+    - match:  { tokens.1.token: 新宿 }
+    - match:  { tokens.2.token: 新宿駅 }
+    - match:  { tokens.3.token: 駅 }
+    - match:  { tokens.4.token: 近く }
+    - match:  { tokens.5.token: ビール }
+    - match:  { tokens.6.token: 飲む }
+    - match:  { tokens.7.token: 行く }
+---
+"Tokenizer":
+    - skip:
+        features: warnings
+    - do:
+        warnings:
+          - text request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - tokenizer request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+        indices.analyze:
+          text:         関西国際空港
+          tokenizer:    mecab_tokenizer
+    - length: { tokens: 3 }
+    - match:  { tokens.0.token: 関西 }
+    - match:  { tokens.1.token: 関西国際空港 }
+    - match:  { tokens.2.token: 国際空港 }
+#    - match:  { tokens.2.token: 国際 }
+#    - match:  { tokens.3.token: 空港 }
+---
+"Baseform filter":
+    - skip:
+        features: warnings
+    - do:
+        warnings:
+          - text request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - tokenizer request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - filter request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+        indices.analyze:
+          text:         飲み
+          tokenizer:    mecab_tokenizer
+          filter:      mecab_baseform
+    - length: { tokens: 1 }
+    - match:  { tokens.0.token: 飲む }
+---
+"Reading filter":
+    - skip:
+        features: warnings
+    - do:
+        warnings:
+          - text request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - tokenizer request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - filter request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+        indices.analyze:
+          text:         寿司
+          tokenizer:    mecab_tokenizer
+          filter:      mecab_readingform
+    - length: { tokens: 1 }
+    - match:  { tokens.0.token: スシ }
+---
+"Stemming filter":
+    - skip:
+        features: warnings
+    - do:
+        warnings:
+          - text request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - tokenizer request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+          - filter request parameter is deprecated and will be removed in the next major release. Please use the JSON in the request body instead request param
+        indices.analyze:
+          text:         サーバー
+          tokenizer:    mecab_tokenizer
+          filter:      mecab_stemmer
+    - length: { tokens: 1 }
+    - match:  { tokens.0.token: サーバ }
