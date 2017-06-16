@@ -38,9 +38,9 @@ import org.apache.lucene.util.AttributeFactory;
 import org.chasen.mecab.Lattice;
 import org.chasen.mecab.MeCabConstants;
 import org.chasen.mecab.Model;
+import org.chasen.mecab.Node;
 import org.chasen.mecab.Path;
 import org.chasen.mecab.Tagger;
-import org.chasen.mecab.Node;
 
 import java.io.IOException;
 import java.security.AccessController;
@@ -54,6 +54,7 @@ import java.util.List;
  * @author matsu
  */
 public final class MecabTokenizer extends Tokenizer {
+
     /** shared libraryの読み込み */
 /*  static {
         AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
