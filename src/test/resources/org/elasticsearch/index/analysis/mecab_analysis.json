@@ -1,0 +1,58 @@
+{
+    "index":{
+        "analysis":{
+            "filter":{
+                "mecab_rf":{
+                    "type":"mecab_readingform",
+                    "use_romaji" : "true"
+                },
+                "mecab_pos" : {
+                    "type": "mecab_part_of_speech",
+                    "stoptags" : ["#  verb-main:", "動詞-自立"]
+                },
+                "mecab_ks" : {
+                    "type": "mecab_stemmer",
+                    "minimum_length" : 6
+                }
+
+            },
+
+            "char_filter":{
+                "mecab_im_only_kanji":{
+                    "type":"mecab_iteration_mark",
+                    "normalize_kanji":true,
+                    "normalize_kana":false
+                },
+                "mecab_im_only_kana":{
+                    "type":"mecab_iteration_mark",
+                    "normalize_kanji":false,
+                    "normalize_kana":true
+                },
+                "mecab_im_default":{
+                    "type":"mecab_iteration_mark"
+                }
+            },
+
+            "tokenizer" : {
+                "mecab" : {
+                    "type":"mecab_tokenizer"
+                },
+                "mecab_empty_user_dict" : {
+                    "type":"mecab_tokenizer",
+                    "user_dictionary":"empty_user_dict.txt"
+                },
+                "mecab_user_dict" : {
+                    "type":"mecab_tokenizer",
+                    "user_dictionary":"user_dict.txt"
+                }
+            },
+            "analyzer" : {
+                "my_analyzer" : {
+                    "type" : "custom",
+                    "tokenizer" : "mecab_tokenizer"
+                }
+            }
+            
+        }
+    }
+}

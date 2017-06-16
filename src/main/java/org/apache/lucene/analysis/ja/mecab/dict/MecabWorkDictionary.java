@@ -17,9 +17,7 @@
 
 package org.apache.lucene.analysis.ja.mecab.dict;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.ja.dict.Dictionary;
-import org.elasticsearch.common.logging.Loggers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,9 +31,6 @@ import java.util.List;
  */
 public class MecabWorkDictionary implements Dictionary {
     
-    private static final Logger logger = Loggers.getLogger(MecabWorkDictionary.class);
-
-  
   HashMap<Integer, WorkDict> map = null ;
   HashMap<String, List<WorkDict>> index = null ;
   enum DicType {
