@@ -12,6 +12,7 @@ gradle assemble
 ### Mecabのインストール
 mecabをインストールしてください。  
 辞書はutf-8であれば、unidic、ipadic、juman、ipadic-neologd、unidic_neologd等を使用可能
+libmecab.soをLD_LIBRARY_PATH、ldconfig等で参照できるように設定済みのこと
 
 ### elasticsearchプラグインのインストール
 ```
