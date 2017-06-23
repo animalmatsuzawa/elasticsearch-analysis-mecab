@@ -30,6 +30,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 esplugin {
+  name 'analysis-mecab'
   description 'The Japanese (Mecab) Analysis plugin integrates Mecab analysis module into elasticsearch.'
   classname 'org.elasticsearch.plugin.analysis.mecab.AnalysisMecabPlugin'
   version '5.4.0'

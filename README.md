@@ -15,7 +15,7 @@ mecabをインストールしてください。
 
 ### elasticsearchプラグインのインストール
 ```
-bin/elasticsearch-plugin install analysis-mecab.zip
+bin/elasticsearch-plugin install file:///path/to/analysis-mecab.zip
 ```
 
 ## kuromojiとの対比
